@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Calculator</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
-    />
-
-    <style>
+{% extends "base.html" %}
+<style>
       .alert {
         background: green;
         padding: 1rem;
@@ -22,6 +11,9 @@
           width: 100%;
           display: flex;
           flex-direction: row;
+      }
+      .dataset-input {
+        padding: 20px;
       }
       .form-wrapper {
           flex: 2;
@@ -40,45 +32,50 @@
           border: 1px solid red;
           height: 80%;
       }
+      .log-container__count {
+          font-size: 50px;
+      }
     </style>
-  </head>
-  <body>
-    <div class="app-container">
+{% block content %}
+<h1 class="title">
+  Welcome, {{ name }}!
+</h1>
+<div class="app-container">
     
     <!-- Form -->
     <div class="container form-wrapper">
     <div class="container">
-      <h3>Calculator App</h3>
+      <h3 class="title">Calculator App</h3>
     </div>
-      <form action="/send" method="POST">
+      <form action="/profile" method="POST">
         <label for="Number One">Data Set</label>
         <input
           type="text"
           placeholder="Input Data Set"
-          class="u-full-width"
+          class="input is-info is-medium"
           name="dataset"
         />
         <label for="Operation">Operation</label>
-        <select class="u-full-width" name="function">
+        <select class="select is-info is-medium" name="function">
           <option value="mean">Mean</option>
           <option value="median">Median</option>
           <option value="mode">Mode</option>
           <option value="variance">Variance</option>
         </select>
 
-        <input type="submit" value="Calculate" id="calc_btn" />
+        <input type="submit" value="Calculate" class="button is-danger is-large" />
         <br />
         <div class="alert">
-          {{ answer }}
+        <h1 class="title">Answer: {{ answer }} </h1>
         </div>
       </form>
     </div>
     <div class="log-wrapper">
         <h1>Function Log</h1>
         <div class="log-container">
-            {{ logCount }}
+        <h1 class="title">{{ logCount }}</h1>
+            
         </div>
     </div>
     </div>
-  </body>
-</html>
+{% endblock %}
