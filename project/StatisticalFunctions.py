@@ -52,24 +52,27 @@ def variance(dataSet):
 
 #5 Variance of population proportion
 def variancePopulationProportion(dataSet):
-    mean = sum(dataSet) / len(dataSet)
-    populationProportion = 1 / len(dataSet)
+    data = [int(s) for s in dataSet.split(',')]
+
+    mean = sum(data) / len(data)
+    populationProportion = 1 / len(data)
     print('populationProportion: ', populationProportion)
     if populationProportion != 0:
-        variance = sum((xi - mean) ** 2 for xi in dataSet) / populationProportion
+        varianceOfPopulation = sum((xi - mean) ** 2 for xi in data) / populationProportion
     else:
-        variance = 0            
+        varianceOfPopulation = 0            
 
-    return variance
+    return varianceOfPopulation
 
 # print('Variance of Population Proportion: ', str(variancePopulationProportion(dataSet)))
 
 #6 Z-Score
 def zScore(dataSet):
-    mean = sum(dataSet) / len(dataSet)
-    std = math.sqrt(sum([(val - mean)**2 for val in dataSet])/(len(dataSet) - 1))
+    data = [int(s) for s in dataSet.split(',')]
+    mean = sum(data) / len(data)
+    std = math.sqrt(sum([(val - mean)**2 for val in data])/(len(data) - 1))
     scores = []
-    for num in dataSet:
+    for num in data:
         # calculates the z-score of each number in the dataset
         zScore = (num - mean)/std
         scores.append(zScore)
@@ -78,12 +81,14 @@ def zScore(dataSet):
 # zScore(dataSet)
 #7 Standardized Score
 def standardizedScore(dataSet):
-    mean = sum(dataSet) / len(dataSet)
-    std = math.sqrt(sum((val - mean) ** 2 for val in dataSet))/(len(dataSet))
+    data = [int(s) for s in dataSet.split(',')]
+
+    mean = sum(data) / len(data)
+    std = math.sqrt(sum((val - mean) ** 2 for val in data))/(len(data))
 
     scores = []
 
-    for num in dataSet:
+    for num in data:
         standardizedScore = (num - mean)/std
         scores.append(standardizedScore)
     return scores
@@ -92,26 +97,35 @@ def standardizedScore(dataSet):
 
 #8 Population Correlation Coefficient 
 def populationCorrelationCoefficient(dataSet):
+    data = [int(s) for s in dataSet.split(',')]
 
-    dataSet.pop()
-    dataSetX = dataSet[9:18]
-    dataSetY = dataSet[0:9]
+    # data.pop()
 
-    Ex = sum(dataSetX)
-    Ey = sum(dataSetY)
+    halfOfLength = int((len(data)) / 2)
+    endOfList = int(len(data))
+    dataX = data[halfOfLength:endOfList]
+    print('dataX: ', dataX)
+
+    print('len(data): ', len(data))
+
+    dataY = data[0:halfOfLength]
+    print('dataY: ', dataY)
+
+    Ex = sum(dataX)
+    Ey = sum(dataY)
     Exy = 0
     Ex2 = 0
     Ey2 = 0
-    n = len(dataSetX)
+    n = len(dataX)
 
-    if n != len(dataSetY):
+    if n != len(dataY):
         cake ='The two data sets that you have entered do not have the same number of numbers.'
-        return cake
+        return 0
     else:
-        for i in range(len(dataSetX)):
-            Exy += dataSetX[i]* dataSetY[i]
-            Ex2 += dataSetX[i] ** 2
-            Ey2 += dataSetY[i] ** 2
+        for i in range(len(dataX)):
+            Exy += dataX[i]* dataY[i]
+            Ex2 += dataX[i] ** 2
+            Ey2 += dataY[i] ** 2
 
         Top = 0
         Top = (n*Exy) - (Ex*Ey)
