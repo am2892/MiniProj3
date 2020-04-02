@@ -22,11 +22,6 @@ html {
 .navbar-item:hover {
     opacity: .7;
 }
-.app-container {
-    margin-top: 10vh;
-    display: flex;
-    flex-direction: row;
-}
 .title {
     margin: 40px;
     font-size: 1.6rem;
@@ -35,14 +30,25 @@ html {
     color: #323648;
     font-family: Lato, Avenir, Arial, Helvetica, sans-serif;
 }
+.page-wrapper {
+    display: flex;
+    margin-top: 10vh!important;
+    flex-direction: row;
+    width: 85%!important;
+    margin: 0;
+    padding: 0;
+    margin-left: 5%!important;
+}
 .calculator-wrapper {
     display: flex;
     flex-direction: column;
-    flex: 5;
+    flex: 4.25;
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid red; */
 }
 .calculator-container {
-    width: 80%;
-    margin-left: 10%;
+    width: 90%;
     box-shadow: 0px 1px 10px rgba(34, 34, 34, 0.3);
 }
 .buttons-container {
@@ -102,16 +108,12 @@ html {
     flex: 1;
     display: flex;
 }
-.page-wrapper {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    margin-left: 3%;
-}
 .log-wrapper {
     display: flex;
     flex-direction: column;
     flex: 2;
+    margin: 0;
+    padding: 0;
     box-shadow: 0px 1px 10px rgba(34, 34, 34, 0.3);
 }
 
@@ -154,6 +156,13 @@ html {
 }
 
 .delete {
+    background-color: #DD1C1A;
+    color: #fafafa;
+    flex: 1;
+    font-size: .9rem;
+}
+.deleteAll {
+    margin-right: 5%!important;
     background-color: #DD1C1A;
     color: #fafafa;
     flex: 1;
