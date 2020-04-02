@@ -3,7 +3,7 @@ import math
 
 #1 Population Mean
 def populationMean(dataSet): 
-    data = [int(s) for s in dataSet.split(',')]
+    data = [float(s) for s in dataSet.split(',')]
 
     mean = sum(data) / len(data)
         return mean
