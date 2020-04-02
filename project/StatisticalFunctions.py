@@ -6,7 +6,8 @@ def populationMean(dataSet):
     data = [float(s) for s in dataSet.split(',')]
 
     mean = sum(data) / len(data)
-        return mean
+    
+    return mean
 
 #2 Median
 def median(dataSet):
