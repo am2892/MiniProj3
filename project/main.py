@@ -81,17 +81,17 @@ def profile():
             from project.StatisticalFunctions import mode
             answer = float(mode(dataset))
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
-        elif operation == 'variance':
-            new_function = functions(userName=current_user.name,functionName='variance', numbers=dataset)
+        elif operation == 'population-standard-deviation':
+            new_function = functions(userName=current_user.name,functionName='populationStandardDeviation', numbers=dataset)
             db.session.add(new_function)
             db.session.commit()
             history = functions.query.all()
             itemsToReturn = []
             returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import variance
-            answer = float(variance(dataset))
+            from project.StatisticalFunctions import populationStandardDeviation
+            answer = float(populationStandardDeviation(dataset))
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
-        elif operation == 'variance-population':
+        elif operation == 'variance-population-proportion':
             new_function = functions(userName=current_user.name,functionName='variancePopulationProportion', numbers=dataset)
             db.session.add(new_function)
             db.session.commit()
@@ -121,8 +121,8 @@ def profile():
             from project.StatisticalFunctions import standardizedScore
             answer = standardizedScore(dataset)
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
-        elif operation == 'ppc':
-            new_function = functions(userName=current_user.name,functionName='PPC', numbers=dataset)
+        elif operation == 'pcc':
+            new_function = functions(userName=current_user.name,functionName='PCC', numbers=dataset)
             db.session.add(new_function)
             db.session.commit()
             history = functions.query.all()
@@ -130,6 +130,76 @@ def profile():
             returnCorrectHistory(history, itemsToReturn)
             from project.StatisticalFunctions import populationCorrelationCoefficient
             answer = float(populationCorrelationCoefficient(dataset))
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+        elif operation == 'confidence-interval':
+            new_function = functions(userName=current_user.name,functionName='confidenceInterval', numbers=dataset)
+            db.session.add(new_function)
+            db.session.commit()
+            history = functions.query.all()
+            itemsToReturn = []
+            returnCorrectHistory(history, itemsToReturn)
+            from project.StatisticalFunctions import confidenceInterval
+            answer = float(confidenceInterval(dataset))
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+        elif operation == 'variance':
+            new_function = functions(userName=current_user.name,functionName='variance', numbers=dataset)
+            db.session.add(new_function)
+            db.session.commit()
+            history = functions.query.all()
+            itemsToReturn = []
+            returnCorrectHistory(history, itemsToReturn)
+            from project.StatisticalFunctions import variance
+            answer = float(variance(dataset))
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+        elif operation == 'p-value':
+            new_function = functions(userName=current_user.name,functionName='pValue', numbers=dataset)
+            db.session.add(new_function)
+            db.session.commit()
+            history = functions.query.all()
+            itemsToReturn = []
+            returnCorrectHistory(history, itemsToReturn)
+            from project.StatisticalFunctions import pValue
+            answer = float(pValue(dataset))
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+        elif operation == 'proportion':
+            new_function = functions(userName=current_user.name,functionName='proportion', numbers=dataset)
+            db.session.add(new_function)
+            db.session.commit()
+            history = functions.query.all()
+            itemsToReturn = []
+            returnCorrectHistory(history, itemsToReturn)
+            from project.StatisticalFunctions import proportion
+            answer = float(proportion(dataset))
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+        elif operation == 'sample-mean':
+            new_function = functions(userName=current_user.name,functionName='sampleMean', numbers=dataset)
+            db.session.add(new_function)
+            db.session.commit()
+            history = functions.query.all()
+            itemsToReturn = []
+            returnCorrectHistory(history, itemsToReturn)
+            from project.StatisticalFunctions import sampleMean
+            answer = float(sampleMean(dataset))
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+        elif operation == 'standard-deviation':
+            new_function = functions(userName=current_user.name,functionName='standardDeviation', numbers=dataset)
+            db.session.add(new_function)
+            db.session.commit()
+            history = functions.query.all()
+            itemsToReturn = []
+            returnCorrectHistory(history, itemsToReturn)
+            from project.StatisticalFunctions import standardDeviation
+            answer = float(standardDeviation(dataset))
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+         elif operation == 'variance-sample-proportion':
+            new_function = functions(userName=current_user.name,functionName='varianceSampleProportion', numbers=dataset)
+            db.session.add(new_function)
+            db.session.commit()
+            history = functions.query.all()
+            itemsToReturn = []
+            returnCorrectHistory(history, itemsToReturn)
+            from project.StatisticalFunctions import varianceSampleProportion
+            answer = float(varianceSampleProportion(dataset))
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
         else:
             return render_template('profile.html', name=current_user.name)
