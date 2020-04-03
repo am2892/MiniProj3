@@ -41,15 +41,27 @@ def mode(dataSet):
 
 # print(str(mode(dataSet)))
 
-#4 Population Variance
-def variance(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
-    mean = sum(data) / len(data)
+#4 Population Standard Deviation
+def populationStandardDeviation(dataSet):
+    # CSVlues are supposed to be the values that are given
+    u = 0
+    #This is the Mean
+    Top = 0
+    # This is the top half of the equation
+    Set = 0
+    # This the bottom half of the equation
+    Ans = 0
+    # This is the Answer
+    u = sum(dataSet)/len(dataSet)
 
-    variance = sum((xi - mean) ** 2 for xi in data) / len(data)
-    return variance
+    for i in dataSet:
+        Top +=(i-u)**2
 
-# print('Population Variance: ', str(variance(dataSet)))
+    Set = Top/len(dataSet)
+
+    Ans = math.sqrt(Set)
+
+    return Ans
 
 #5 Variance of population proportion
 def variancePopulationProportion(dataSet):
@@ -153,10 +165,59 @@ def confidenceInterval(dataSet):
 # print ("Confidence Interval:", confidenceInterval(dataSet))
 
 #10 Population Variance
+def variance(dataSet):
+    data = [int(s) for s in dataSet.split(',')]
+    mean = sum(data) / len(data)
+
+    variance = sum((xi - mean) ** 2 for xi in data) / len(data)
+    return variance
+
+# print('Population Variance: ', str(variance(dataSet)))
 
 #11 P Value
+def pValue(dataSet):
+    set1 = dataSet[0:9]
+    set2 = dataSet[9:18]
+
+    mean_1 = sum(set1)/len(set1)
+    mean_2 = sum(set2)/len(set2)
+
+    n1 = len(set1) - 1
+    std_err_1 = (math.sqrt(sum([(val - mean_1) ** 2 for val in set1]))/(n1)) / math.sqrt(len(set1))
+
+    n2 = len(set2) - 1
+    std_err_2 = (math.sqrt(sum([(val - mean_2) ** 2 for val in set2]))/(n2)) / math.sqrt(len(set2))
+
+    std_err_diff = math.sqrt(std_err_1 ** 2 + std_err_2 ** 2)
+
+    t_statistic = (mean_1 - mean_2) / (std_err_diff)
+
+    deg_of_freedom = len(set1) + len(set2) - 2
+
+    alpha = 0.05
+
+    critical_value = t.ppf(1.0 - alpha, deg_of_freedom)
+
+    pValue = (1 - t.cdf(abs(t_statistic), deg_of_freedom)) * 2
+
+    if pValue > alpha:
+        return("p-value is less than alpha. Null hypothesis accepted: means are equal.")
+    else:
+        return("p-value is greater than alpha. Null hypothesis rejected: means are not equal.")
 
 #12 Proportion
+def proportion(dataSet):
+    try:
+        ans = []
+        total = sum(dataSet)
+
+        for i in dataSet:
+            temp = i/total
+            ans.append('{:.4f}'.format(temp))
+        return ans
+
+    except:
+        return "Pay attention, also I can not divide by zero :("
 
 #13 Sample Mean
 def sampleMean(dataSet):   
@@ -181,24 +242,4 @@ def varianceSampleProportion(dataSet):
 
     print("Variance of Sample Proportion is:", varianceSampleProportion)
 
-#16 Population Standard Deviation
-def populationStandardDeviation(dataSet):
-    # CSVlues are supposed to be the values that are given
-    u = 0
-    #This is the Mean
-    Top = 0
-    # This is the top half of the equation
-    Set = 0
-    # This the bottom half of the equation
-    Ans = 0
-    # This is the Answer
-    u = sum(dataSet)/len(dataSet)
 
-    for i in dataSet:
-        Top +=(i-u)**2
-
-    Set = Top/len(dataSet)
-
-    Ans = math.sqrt(Set)
-
-    return Ans
