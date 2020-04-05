@@ -38,21 +38,18 @@ def delete_component(component_id):
 @login_required
 def profile():
     if request.method == 'POST':
-        dataset = request.form['dataset']
+        dataset = request.form['dataset'].replace(" ", "")
         operation = request.form['function']
         
         if operation == 'deleteAll':
             print('delete')
-            # functions.query.delete()
-            # db.session.commit()
             history = functions.query.all()
             itemsToReturn = []
             deleteCorrectItems(history, itemsToReturn)
             return render_template('profile.html', logCount=itemsToReturn, name=current_user.name)
-        if operation == 'deleteOne':
-            print('delete one')
+
         if operation == 'mean':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0 :
                 new_function = functions(userName=current_user.name,functionName='mean', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -71,7 +68,7 @@ def profile():
             print('error: ', error)
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'median':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='median',numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -90,7 +87,7 @@ def profile():
 
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'mode':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='mode', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -110,7 +107,7 @@ def profile():
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
 
         elif operation == 'population-standard-deviation':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='populationStandardDeviation', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -130,7 +127,7 @@ def profile():
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
 
         elif operation == 'variance-population-proportion':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='variancePopulationProportion', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -150,7 +147,7 @@ def profile():
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
 
         elif operation == 'z-score':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='zScore', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -170,7 +167,7 @@ def profile():
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
 
         elif operation == 'standardized-score':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='standardizedScore', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -189,7 +186,7 @@ def profile():
 
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'pcc':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='PCC', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -208,7 +205,7 @@ def profile():
 
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name,error=error)
         elif operation == 'confidence-interval':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='confidenceInterval', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -227,7 +224,7 @@ def profile():
 
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'variance':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='variance', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -245,7 +242,7 @@ def profile():
                 error=True
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'p-value':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='pValue', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -263,7 +260,7 @@ def profile():
                 error=True
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'proportion':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='proportion', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -281,7 +278,7 @@ def profile():
                 error=True
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'sample-mean':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='sampleMean', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -299,7 +296,7 @@ def profile():
                 error=True
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'sample-standard-deviation':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='standardDeviation', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -317,7 +314,7 @@ def profile():
                 error=True
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'variance-sample-proportion':
-            if len(dataset) > 0 and not dataset:
+            if len(dataset) > 0:
                 new_function = functions(userName=current_user.name,functionName='varianceSampleProportion', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
