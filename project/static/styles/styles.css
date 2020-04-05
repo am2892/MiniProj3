@@ -30,6 +30,16 @@ html {
     color: #323648;
     font-family: Lato, Avenir, Arial, Helvetica, sans-serif;
 }
+.error {
+    margin: 40px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: red;
+    font-family: Lato, Avenir, Arial, Helvetica, sans-serif;
+    padding: 10px;
+    border: 3px dotted red;
+}
 .page-wrapper {
     display: flex;
     margin-top: 10vh!important;
