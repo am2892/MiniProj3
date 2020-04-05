@@ -1,5 +1,11 @@
 # MiniProj3
 
+#### Team Members
+- Aaron Miller
+- Alejandro Lozada
+- Ariana Ruggiero
+- Sherif Elmetwally
+
 #### Features
 - [x] let user enter a list of numbers and get mean,median,mode,variance
 - [x] let user signup/login
@@ -12,3 +18,5 @@
 - [ ] let users bring back a specific function from their history
 - [ ] add error message for empty inputs
 - [ ] t is undefined for p-value
+
+
