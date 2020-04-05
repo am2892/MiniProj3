@@ -1,4 +1,4 @@
-# MiniProj3
+# Mini Project 3
 
 #### Team Members
 - Aaron Miller
