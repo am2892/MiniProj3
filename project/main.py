@@ -52,14 +52,19 @@ def profile():
         if operation == 'deleteOne':
             print('delete one')
         if operation == 'mean':
-            new_function = functions(userName=current_user.name,functionName='mean', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import populationMean
-            answer = float(populationMean(dataset))
+            if len(dataset) > 0:
+                new_function = functions(userName=current_user.name,functionName='mean', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import populationMean
+                answer = float(populationMean(dataset))
+            else :
+                answer = 'input cannot be empty'
+                logCount = ['Error, blank input']
+                
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
         elif operation == 'median':
             new_function = functions(userName=current_user.name,functionName='median',numbers=dataset)
@@ -139,7 +144,7 @@ def profile():
             itemsToReturn = []
             returnCorrectHistory(history, itemsToReturn)
             from project.StatisticalFunctions import confidenceInterval
-            answer = float(confidenceInterval(dataset))
+            answer = (confidenceInterval(dataset))
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
         elif operation == 'variance':
             new_function = functions(userName=current_user.name,functionName='variance', numbers=dataset)
@@ -169,7 +174,7 @@ def profile():
             itemsToReturn = []
             returnCorrectHistory(history, itemsToReturn)
             from project.StatisticalFunctions import proportion
-            answer = float(proportion(dataset))
+            answer = (proportion(dataset))
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
         elif operation == 'sample-mean':
             new_function = functions(userName=current_user.name,functionName='sampleMean', numbers=dataset)
@@ -181,7 +186,7 @@ def profile():
             from project.StatisticalFunctions import sampleMean
             answer = float(sampleMean(dataset))
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
-        elif operation == 'standard-deviation':
+        elif operation == 'sample-standard-deviation':
             new_function = functions(userName=current_user.name,functionName='standardDeviation', numbers=dataset)
             db.session.add(new_function)
             db.session.commit()
@@ -191,7 +196,7 @@ def profile():
             from project.StatisticalFunctions import standardDeviation
             answer = float(standardDeviation(dataset))
             return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
-         elif operation == 'variance-sample-proportion':
+        elif operation == 'variance-sample-proportion':
             new_function = functions(userName=current_user.name,functionName='varianceSampleProportion', numbers=dataset)
             db.session.add(new_function)
             db.session.commit()

@@ -10,3 +10,4 @@
 - [x] let users delete all of their history
 - [x] let users delete a specific function from their history
 - [ ] let users bring back a specific function from their history
+- [ ] t is undefined for p-value
