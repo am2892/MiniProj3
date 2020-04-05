@@ -52,7 +52,7 @@ def profile():
         if operation == 'deleteOne':
             print('delete one')
         if operation == 'mean':
-            if len(dataset) > 0:
+            if len(dataset) > 0 and not dataset:
                 new_function = functions(userName=current_user.name,functionName='mean', numbers=dataset)
                 db.session.add(new_function)
                 db.session.commit()
@@ -61,151 +61,279 @@ def profile():
                 returnCorrectHistory(history, itemsToReturn)
                 from project.StatisticalFunctions import populationMean
                 answer = float(populationMean(dataset))
+                error=False
             else :
-                answer = 'input cannot be empty'
-                logCount = ['Error, blank input']
-                
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+            print('error: ', error)
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'median':
-            new_function = functions(userName=current_user.name,functionName='median',numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import median
-            answer = float(median(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='median',numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import median
+                answer = float(median(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'mode':
-            new_function = functions(userName=current_user.name,functionName='mode', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import mode
-            answer = float(mode(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='mode', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import mode
+                answer = float(mode(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
+
         elif operation == 'population-standard-deviation':
-            new_function = functions(userName=current_user.name,functionName='populationStandardDeviation', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import populationStandardDeviation
-            answer = float(populationStandardDeviation(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='populationStandardDeviation', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import populationStandardDeviation
+                answer = float(populationStandardDeviation(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
+
         elif operation == 'variance-population-proportion':
-            new_function = functions(userName=current_user.name,functionName='variancePopulationProportion', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import variancePopulationProportion
-            answer = float(variancePopulationProportion(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='variancePopulationProportion', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import variancePopulationProportion
+                answer = float(variancePopulationProportion(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
+
         elif operation == 'z-score':
-            new_function = functions(userName=current_user.name,functionName='zScore', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import zScore
-            answer = zScore(dataset)
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='zScore', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import zScore
+                answer = zScore(dataset)
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
+
         elif operation == 'standardized-score':
-            new_function = functions(userName=current_user.name,functionName='standardizedScore', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import standardizedScore
-            answer = standardizedScore(dataset)
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='standardizedScore', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import standardizedScore
+                answer = standardizedScore(dataset)
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'pcc':
-            new_function = functions(userName=current_user.name,functionName='PCC', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import populationCorrelationCoefficient
-            answer = float(populationCorrelationCoefficient(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='PCC', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import populationCorrelationCoefficient
+                answer = float(populationCorrelationCoefficient(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name,error=error)
         elif operation == 'confidence-interval':
-            new_function = functions(userName=current_user.name,functionName='confidenceInterval', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import confidenceInterval
-            answer = (confidenceInterval(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='confidenceInterval', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import confidenceInterval
+                answer = (confidenceInterval(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'variance':
-            new_function = functions(userName=current_user.name,functionName='variance', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import variance
-            answer = float(variance(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='variance', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import variance
+                answer = float(variance(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'p-value':
-            new_function = functions(userName=current_user.name,functionName='pValue', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import pValue
-            answer = float(pValue(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='pValue', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import pValue
+                answer = float(pValue(dataset))
+                error=False
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'proportion':
-            new_function = functions(userName=current_user.name,functionName='proportion', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import proportion
-            answer = (proportion(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='proportion', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import proportion
+                answer = (proportion(dataset))
+                error=False            
+            else: 
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'sample-mean':
-            new_function = functions(userName=current_user.name,functionName='sampleMean', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import sampleMean
-            answer = float(sampleMean(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='sampleMean', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import sampleMean
+                answer = float(sampleMean(dataset))
+                error=False                
+            else:
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'sample-standard-deviation':
-            new_function = functions(userName=current_user.name,functionName='standardDeviation', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import standardDeviation
-            answer = float(standardDeviation(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='standardDeviation', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import standardDeviation
+                answer = float(standardDeviation(dataset))
+                error=False
+            else: 
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         elif operation == 'variance-sample-proportion':
-            new_function = functions(userName=current_user.name,functionName='varianceSampleProportion', numbers=dataset)
-            db.session.add(new_function)
-            db.session.commit()
-            history = functions.query.all()
-            itemsToReturn = []
-            returnCorrectHistory(history, itemsToReturn)
-            from project.StatisticalFunctions import varianceSampleProportion
-            answer = float(varianceSampleProportion(dataset))
-            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name)
+            if len(dataset) > 0 and not dataset:
+                new_function = functions(userName=current_user.name,functionName='varianceSampleProportion', numbers=dataset)
+                db.session.add(new_function)
+                db.session.commit()
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                from project.StatisticalFunctions import varianceSampleProportion
+                answer = float(varianceSampleProportion(dataset))
+                error=False
+            else: 
+                answer = 'input cannot be empty, try again'
+                history = functions.query.all()
+                itemsToReturn = []
+                returnCorrectHistory(history, itemsToReturn)
+                error=True
+            return render_template('profile.html', answer=answer, logCount=itemsToReturn, name=current_user.name, error=error)
         else:
             return render_template('profile.html', name=current_user.name)
     

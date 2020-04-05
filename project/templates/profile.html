@@ -34,7 +34,7 @@
                 <div class="input-wrapper">
                   <input
                   type="text"
-                  placeholder="Input Data Set"
+                  placeholder="Input Data Set ex: 1,2,3"
                   class="input"
                   name="dataset"
                 />
@@ -47,7 +47,11 @@
                 </div>
               <br />
               <div class="alert">
-              <h1 class="title">Answer: {{ answer }} </h1>
+              {% if error is sameas true %}
+                <h1 class="error">Error: {{ answer }} </h1>
+              {% else %}
+                <h1 class="title">Answer: {{ answer }} </h1>
+              {% endif %}
             </div>
         </div>  
         </div>
@@ -58,18 +62,20 @@
             <input type="submit" class="button deleteAll" name="function" value="deleteAll"></input>
           </div>
         <table class="functions-container">
-          {% for log in logCount %}
-          <tr class="table-row">
-            <td class='log'>{{log.functionName}}:</td>
-            <td class='log'>{{log.numbers}}</td>
-            <td>
-                <a href="{{ url_for('main.delete_component', component_id=log.id) }}" class="button delete">delete</a>
-            </td>            
-            <td>
-              <button class="button bring-back">bring back</button>            
-            </td>
-          </tr>
-        {% endfor %}
+        {% if logCount %}
+            {% for log in logCount %}
+            <tr class="table-row">
+              <td class='log'>{{log.functionName}}:</td>
+              <td class='log'>{{log.numbers}}</td>
+              <td>
+                  <a href="{{ url_for('main.delete_component', component_id=log.id) }}" class="button delete">delete</a>
+              </td>            
+              <td>
+                <button class="button bring-back">bring back</button>            
+              </td>
+            </tr>
+          {% endfor %}
+        {% endif %}
         </table>
         </div>
       </form>

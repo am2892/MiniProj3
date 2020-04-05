@@ -3,7 +3,15 @@ import math
 
 #1 Population Mean
 def populationMean(dataSet): 
-    data = [float(s) for s in dataSet.split(',')]
+    print('dataSet: ', dataSet)
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
 
     mean = sum(data) / len(data)
     
@@ -11,7 +19,14 @@ def populationMean(dataSet):
 
 #2 Median
 def median(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
 
     listLength = len(data)
     sortedList = sorted(data)
@@ -24,7 +39,15 @@ def median(dataSet):
 
 #3 Mode 
 def mode(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     n = len(data)
     getMode = {}
 
@@ -43,7 +66,14 @@ def mode(dataSet):
 
 #4 Population Standard Deviation
 def populationStandardDeviation(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
     # CSVlues are supposed to be the values that are given
     u = 0
     #This is the Mean
@@ -66,7 +96,14 @@ def populationStandardDeviation(dataSet):
 
 #5 Variance of population proportion
 def variancePopulationProportion(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
 
     mean = sum(data) / len(data)
     populationProportion = 1 / len(data)
@@ -82,7 +119,15 @@ def variancePopulationProportion(dataSet):
 
 #6 Z-Score
 def zScore(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     mean = sum(data) / len(data)
     std = math.sqrt(sum([(val - mean)**2 for val in data])/(len(data) - 1))
     scores = []
@@ -95,7 +140,14 @@ def zScore(dataSet):
 # zScore(dataSet)
 #7 Standardized Score
 def standardizedScore(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
 
     mean = sum(data) / len(data)
     std = math.sqrt(sum((val - mean) ** 2 for val in data))/(len(data))
@@ -111,7 +163,14 @@ def standardizedScore(dataSet):
 
 #8 Population Correlation Coefficient 
 def populationCorrelationCoefficient(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
 
     # data.pop()
 
@@ -150,7 +209,15 @@ def populationCorrelationCoefficient(dataSet):
 
 #9 Confidence Interval
 def confidenceInterval(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     confidence = .95
     n = len(data)
     m = sum(data) / n
@@ -168,7 +235,15 @@ def confidenceInterval(dataSet):
 
 #10 Population Variance
 def variance(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     mean = sum(data) / len(data)
 
     variance = sum((xi - mean) ** 2 for xi in data) / len(data)
@@ -217,7 +292,15 @@ def variance(dataSet):
 
 #12 Proportion
 def proportion(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     try:
         ans = []
         total = sum(data)
@@ -232,7 +315,15 @@ def proportion(dataSet):
 
 #13 Sample Mean
 def sampleMean(dataSet):   
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     halfOfLength = int((len(data)) / 2) + 1
     shortendDataSet = data[0:halfOfLength]
     smean = sum(data) / len(data)
@@ -242,14 +333,30 @@ def sampleMean(dataSet):
 
 #14 Sample Standard Deviation
 def standardDeviation(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     mean = sum(data) / len(data)
     std = math.sqrt(sum([(val - mean)**2 for val in data])/(len(data) - 1))
 
     return std
 #15 Variance of sample proportion
 def varianceSampleProportion(dataSet):
-    data = [int(s) for s in dataSet.split(',')]
+    data = [elem for elem in dataSet if elem.strip()]
+    i = 0
+    while i < len(data):
+        if data[i] == ',':
+            data.remove(data[i])
+        else:
+            i += 1
+    data = [float(s) for s in data]
+
     mean = sum(data) / len(data)
     varianceSampleProportion = sum((xi - mean) ** 2 for xi in data) / (len(data) - 1)
 
