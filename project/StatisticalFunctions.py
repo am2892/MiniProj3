@@ -1,5 +1,6 @@
 import math
-#from scipy import sem, t
+from scipy.stats import t
+import numpy
 
 #1 Population Mean
 def populationMean(dataSet): 
@@ -252,43 +253,44 @@ def variance(dataSet):
 # print('Population Variance: ', str(variance(dataSet)))
 
 #11 P Value
-# def pValue(dataSet):
-#     data = [int(s) for s in dataSet.split(',')]
+def pValue(dataSet):
+    data = [int(s) for s in dataSet.split(',')]
 
-#     halfOfLength = int((len(data)) / 2)
-#     endOfList = int(len(data))
+    halfOfLength = int((len(data)) / 2)
+    endOfList = int(len(data))
+    
+    set1 = data[0:halfOfLength]
+    set2 = data[halfOfLength:endOfList]
 
-#     set1 = data[0:halfOfLength]
-#     set2 = data[halfOfLength:endOfList]
+    mean_1 = sum(set1)/len(set1)
+    mean_2 = sum(set2)/len(set2)
 
-#     mean_1 = sum(set1)/len(set1)
-#     mean_2 = sum(set2)/len(set2)
+    n1 = len(set1) - 1
+    if (n1 != 0):
+        std_err_1 = (math.sqrt(sum([(val - mean_1) ** 2 for val in set1]))/(n1)) / math.sqrt(len(set1))
+    
+    else: 
+        std_err_1 = 0
 
-#     n1 = len(set1) - 1
-#     if (n1 != 0):
-#         std_err_1 = (math.sqrt(sum([(val - mean_1) ** 2 for val in set1]))/(n1)) / math.sqrt(len(set1))
-#     else: 
-#         std_err_1 = 0
+    n2 = len(set2) - 1
+    std_err_2 = (math.sqrt(sum([(val - mean_2) ** 2 for val in set2]))/(n2)) / math.sqrt(len(set2))
 
-#     n2 = len(set2) - 1
-#     std_err_2 = (math.sqrt(sum([(val - mean_2) ** 2 for val in set2]))/(n2)) / math.sqrt(len(set2))
+    std_err_diff = math.sqrt(std_err_1 ** 2 + std_err_2 ** 2)
+    
+    t_statistic = (mean_1 - mean_2) / (std_err_diff)
+    
+    deg_of_freedom = len(set1) + len(set2) - 2
+    
+    alpha = 0.05
 
-#     std_err_diff = math.sqrt(std_err_1 ** 2 + std_err_2 ** 2)
-
-#     t_statistic = (mean_1 - mean_2) / (std_err_diff)
-
-#     deg_of_freedom = len(set1) + len(set2) - 2
-
-#     alpha = 0.05
-
-#     critical_value = t.ppf(1.0 - alpha, deg_of_freedom)
-
-#     pValue = (1 - t.cdf(abs(t_statistic), deg_of_freedom)) * 2
-
-#     if pValue > alpha:
-#         return("p-value is less than alpha. Null hypothesis accepted: means are equal.")
-#     else:
-#         return("p-value is greater than alpha. Null hypothesis rejected: means are not equal.")
+    critical_value = t.ppf(1.0 - alpha, deg_of_freedom)
+    
+    pValue = (1 - t.cdf(abs(t_statistic), deg_of_freedom)) * 2
+    
+    if pValue > alpha:
+         return("p-value is less than alpha. Null hypothesis accepted: means are equal.")
+    else:
+         return("p-value is greater than alpha. Null hypothesis rejected: means are not equal.")
 
 #12 Proportion
 def proportion(dataSet):
