@@ -34,9 +34,11 @@
                 <div class="input-wrapper">
                   <input
                   type="text"
+                  id="input"
                   placeholder="Input Data Set ex: 1,2,3"
                   class="input"
                   name="dataset"
+                  value = {{ numbers }}
                 />
                 <input
                   type="text"
@@ -71,7 +73,7 @@
                   <a href="{{ url_for('main.delete_component', component_id=log.id) }}" class="button delete">delete</a>
               </td>            
               <td>
-                <button class="button bring-back">bring back</button>            
+                <a href="{{ url_for('main.return_numbers', component_id=log.id) }}" class="button bring-back">bring back</a>
               </td>
             </tr>
           {% endfor %}
