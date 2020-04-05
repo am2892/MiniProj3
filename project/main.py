@@ -250,7 +250,7 @@ def profile():
                 itemsToReturn = []
                 returnCorrectHistory(history, itemsToReturn)
                 from project.StatisticalFunctions import pValue
-                answer = float(pValue(dataset))
+                answer = pValue(dataset)
                 error=False
             else:
                 answer = 'input cannot be empty, try again'
