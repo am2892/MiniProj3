@@ -1,23 +1,46 @@
 # Statistical Calculator with Flask
 
-## Features
-* Allow user enter a list of numbers and run statistical functions
-* Allow user signup/login
-* Allow user keep track of previous functions 
-* Allow users to view their history
-* Allow users to delete all of their history
-* Allow users to delete a specific function from their history
-* Allow users bring back a specific function from their history
-* Throw error message for empty inputs
+#### Team Members
+- Aaron Miller
+- Alejandro Lozada
+- Ariana Ruggiero
+- Sherif Elmetwally
 
-## Tools Used 
+#### Features
+- Implemented an interactive web interface for the calculator
+
+- Only logged in users can use the calculator
+
+- The calculator record's calculation history
+
+- The user is able to see their calculation history
+
+- The user is able to delete a specific entry
+
+- The user is able to delete all entries
+
+- The user is able to load a specific history entry and continue calculations from there
+
+- Calculator has two inputs
+
+- Implemented the same test cases but from the flask endpoint perspective
+
+- Tested each login at required endpoint 
+
+- Tested logout
+
+- Tested user creation
+
+- Tested user login with dummy user
+
+#### Tools Used 
 * Flask
 * SQLAlchemy
 * Sqlite
 * Jinja
 * Scipy
 
-## Screenshots
+#### Screenshots
 ###### User Flow
 ![gif](https://user-images.githubusercontent.com/46908343/78519789-5bf5fe00-7792-11ea-98f8-f694a1e37e18.gif)
 
