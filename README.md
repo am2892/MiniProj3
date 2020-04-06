@@ -1,5 +1,7 @@
 # Statistical Calculator with Flask
 
+[![Build Status](https://travis-ci.org/am2892/MiniProj3.svg?branch=master)](https://travis-ci.org/am2892/MiniProj3)
+
 #### Team Members
 - Aaron Miller
 - Alejandro Lozada
