@@ -51,5 +51,5 @@
 <img width="420" alt="history-table" src="https://user-images.githubusercontent.com/46908343/78520028-21d92c00-7793-11ea-9de0-cade1d39824d.png">
 
 ###### Login Page
-<img width="420" alt="login-page" src=https://github.com/am2892/MiniProj3/blob/master/login%20page.png?raw=true">
+<img width="420" alt="login-page" src="https://github.com/am2892/MiniProj3/blob/master/login%20page.png?raw=true">
 
