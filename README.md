@@ -8,7 +8,7 @@
 - Ariana Ruggiero
 - Sherif Elmetwally
 
-#### Features
+#### Tasks
 - Implemented an interactive web interface for the calculator
 
 - Only logged in users can use the calculator
